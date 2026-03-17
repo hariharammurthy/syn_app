@@ -1,0 +1,37 @@
+[
+  {
+    "id": "lead_1773716550088",
+    "name": "Sarah Lee",
+    "email": "sarah@techcorp.com",
+    "company": "TechCorp",
+    "need": "reduce manual data entry",
+    "status": "new",
+    "submittedAt": "2026-03-17T03:02:30.088Z"
+  },
+  {
+    "id": "lead_1773717243467",
+    "name": "hari",
+    "email": "harij@gmail.com",
+    "company": "syn",
+    "need": "We're a logistics company and we waste hours every day on manual data entry",
+    "status": "new",
+    "submittedAt": "2026-03-17T03:14:03.467Z"
+  },
+  {
+    "id": "lead_1773718463615",
+    "name": "Harry",
+    "email": "ha@gmail.com",
+    "company": "syng",
+    "need": "Book a consultation",
+    "status": "new",
+    "submittedAt": "2026-03-17T03:34:23.615Z"
+  },
+  {
+    "id": "lead_1773763155307",
+    "name": "Nalan",
+    "email": "nalansy@gmail.com",
+    "company": "Synergech",
+    "need": "Digital Transformation / modernizing legacy systems",
+    "submittedAt": "2026-03-17T15:59:15.307Z"
+  }
+]
