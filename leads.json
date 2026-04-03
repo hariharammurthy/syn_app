@@ -33,5 +33,23 @@
     "company": "Synergech",
     "need": "Digital Transformation / modernizing legacy systems",
     "submittedAt": "2026-03-17T15:59:15.307Z"
+  },
+  {
+    "id": "lead_1774035954063",
+    "name": "LeBron James",
+    "email": "LBJ@Lakers.com",
+    "company": "Los Angeles Lakers",
+    "need": "What services do you offer?",
+    "status": "new",
+    "submittedAt": "2026-03-20T19:45:54.069Z"
+  },
+  {
+    "id": "lead_1774036845864",
+    "name": "Lionel Messi",
+    "email": "LMessi@InterMiami.com",
+    "company": "Inter Miami FC",
+    "need": "What services do you offer?",
+    "status": "new",
+    "submittedAt": "2026-03-20T20:00:45.864Z"
   }
 ]

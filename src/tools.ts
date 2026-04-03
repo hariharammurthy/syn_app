@@ -1,17 +1,5 @@
 ﻿import { companyData } from "./companyData";
-import fs from "fs";
-import path from "path";
-
-const LEADS_FILE = path.join(__dirname, "..", "leads.json");
-
-function readLeads(): object[] {
-  if (!fs.existsSync(LEADS_FILE)) return [];
-  return JSON.parse(fs.readFileSync(LEADS_FILE, "utf-8"));
-}
-
-function writeLeads(leads: object[]) {
-  fs.writeFileSync(LEADS_FILE, JSON.stringify(leads, null, 2), "utf-8");
-}
+import { pool } from "./db";
 
 export function recommendService(painPoints: string[]) {
   const normalized = painPoints.map((p) => p.toLowerCase());
@@ -94,18 +82,25 @@ export async function submitLead(input: {
   need: string;
 }) {
   const leadId = `lead_${Date.now()}`;
-  const lead = {
-    id: leadId,
-    ...input,
-    status: "new" as "new" | "contacted" | "qualified" | "closed",
-    submittedAt: new Date().toISOString(),
-  };
+  const submittedAt = new Date().toISOString();
 
-  const leads = readLeads();
-  leads.push(lead);
-  writeLeads(leads);
+  await pool.query(
+    `
+    INSERT INTO leads (id, name, email, company, need, status, submitted_at)
+    VALUES ($1, $2, $3, $4, $5, $6, $7)
+    `,
+    [
+      leadId,
+      input.name,
+      input.email,
+      input.company || null,
+      input.need,
+      "new",
+      submittedAt,
+    ]
+  );
 
-  console.log(`[Lead saved] ${lead.name} <${lead.email}> -- ${leads.length} total leads`);
+  console.log(`[Lead saved] ${input.name} <${input.email}>`);
 
   return {
     success: true,
