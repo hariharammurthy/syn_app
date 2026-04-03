@@ -3,242 +3,317 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Synergech — Technology Solutions</title>
+  <title>Synergech — Transforming Businesses through Technology Solutions</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --primary: #6c63ff; --primary-dark: #4f46e5; --primary-light: #ede9fe;
-      --blue: #3b82f6; --text: #0f172a; --text-muted: #64748b;
-      --border: #e2e8f0; --bg: #f8fafc; --white: #ffffff;
-      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
-      --shadow-md: 0 4px 20px rgba(0,0,0,0.1);
-      --shadow-lg: 0 12px 48px rgba(0,0,0,0.14);
+      --navy: #0a1628; --navy-mid: #112240; --navy-light: #1a3a5c;
+      --orange: #f97316; --orange-dark: #ea6c0a; --orange-light: #fff7ed;
+      --teal: #0ea5e9;
+      --white: #ffffff; --bg-section: #f8fafc; --border-light: #e2e8f0;
+      --shadow-lg: 0 12px 48px rgba(0,0,0,0.3);
     }
     html { scroll-behavior: smooth; }
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
-
-    nav {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(255,255,255,0.85); backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      padding: 0 40px; height: 64px;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .nav-logo { font-size: 20px; font-weight: 700; background: linear-gradient(135deg, var(--primary), var(--blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .nav-links { display: flex; gap: 32px; align-items: center; }
-    .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 14px; font-weight: 500; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--primary); }
-    .nav-cta { background: linear-gradient(135deg, var(--primary), var(--blue)); color: white !important; padding: 8px 20px; border-radius: 8px; font-weight: 600 !important; }
-
-    .hero {
-      min-height: calc(100vh - 64px); display: flex; align-items: center; justify-content: center;
-      text-align: center; padding: 80px 24px;
-      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(108,99,255,0.1) 0%, transparent 70%);
-    }
-    .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--primary-light); color: var(--primary-dark); font-size: 13px; font-weight: 600; padding: 6px 14px; border-radius: 100px; margin-bottom: 24px; }
-    .hero h1 { font-size: clamp(36px, 6vw, 64px); font-weight: 800; line-height: 1.15; letter-spacing: -1.5px; margin-bottom: 20px; max-width: 780px; }
-    .hero h1 span { background: linear-gradient(135deg, var(--primary), var(--blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .hero p { color: var(--text-muted); font-size: clamp(16px, 2vw, 20px); max-width: 560px; margin: 0 auto 40px; }
-    .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-    .btn-primary { background: linear-gradient(135deg, var(--primary), var(--blue)); color: white; padding: 14px 28px; border-radius: 10px; font-size: 15px; font-weight: 600; border: none; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 16px rgba(108,99,255,0.35); transition: transform 0.2s, box-shadow 0.2s; }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(108,99,255,0.4); }
-    .btn-secondary { background: white; color: var(--text); padding: 14px 28px; border-radius: 10px; font-size: 15px; font-weight: 600; border: 1.5px solid var(--border); cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: border-color 0.2s, background 0.2s; }
-    .btn-secondary:hover { border-color: var(--primary); background: var(--primary-light); }
-    .hero-stats { display: flex; gap: 48px; justify-content: center; margin-top: 60px; flex-wrap: wrap; }
-    .stat .number { font-size: 32px; font-weight: 800; }
-    .stat .label { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
-
-    section { padding: 80px 40px; max-width: 1200px; margin: 0 auto; }
-    .section-label { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--primary); margin-bottom: 12px; }
-    .section-title { font-size: clamp(28px, 4vw, 42px); font-weight: 800; letter-spacing: -0.5px; margin-bottom: 16px; }
-    .section-sub { font-size: 17px; color: var(--text-muted); max-width: 520px; margin-bottom: 48px; }
-
-    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
-    .service-card { background: white; border: 1px solid var(--border); border-radius: 16px; padding: 28px; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; }
-    .service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--primary); }
-    .service-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 16px; }
-    .service-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
-    .service-card p { font-size: 14px; color: var(--text-muted); line-height: 1.65; margin-bottom: 16px; }
-    .service-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-    .tag { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 100px; background: var(--primary-light); color: var(--primary-dark); }
-
-    .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 32px; }
-    .step { text-align: center; padding: 24px; }
-    .step-num { width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--blue)); color: white; font-size: 20px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; box-shadow: 0 4px 16px rgba(108,99,255,0.3); }
-    .step h4 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
-    .step p { font-size: 14px; color: var(--text-muted); }
-
-    .cta-section { background: linear-gradient(135deg, var(--primary), var(--blue)); border-radius: 24px; padding: 64px 40px; text-align: center; color: white; margin: 0 40px 80px; }
-    .cta-section h2 { font-size: clamp(26px, 4vw, 40px); font-weight: 800; margin-bottom: 16px; }
-    .cta-section p { font-size: 17px; opacity: 0.85; margin-bottom: 32px; }
-    .btn-white { background: white; color: var(--primary); padding: 14px 32px; border-radius: 10px; font-size: 15px; font-weight: 700; border: none; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: transform 0.2s; }
-    .btn-white:hover { transform: translateY(-2px); }
-
-    footer { border-top: 1px solid var(--border); padding: 32px 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
-    footer .logo { font-size: 16px; font-weight: 700; color: var(--primary); }
-    footer p { font-size: 13px; color: var(--text-muted); }
-
-    #chat-toggle { position: fixed; bottom: 28px; right: 28px; width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--blue)); border: none; cursor: pointer; box-shadow: 0 4px 24px rgba(108,99,255,0.5); display: flex; align-items: center; justify-content: center; transition: transform 0.2s, box-shadow 0.2s; z-index: 999; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--white); color: #1e293b; line-height: 1.6; }
+    /* NAV */
+    nav { position: sticky; top: 0; z-index: 100; background: var(--navy); border-bottom: 1px solid rgba(255,255,255,0.08); padding: 0 60px; height: 70px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; }
+    .nav-logo-text { font-size: 22px; font-weight: 800; color: var(--white); letter-spacing: -0.5px; }
+    .nav-logo-text span { color: var(--orange); }
+    .nav-links { display: flex; gap: 36px; align-items: center; }
+    .nav-links a { text-decoration: none; color: rgba(255,255,255,0.75); font-size: 14px; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--orange); }
+    .nav-cta { background: var(--orange) !important; color: white !important; padding: 9px 22px; border-radius: 6px; font-weight: 600 !important; }
+    .nav-cta:hover { background: var(--orange-dark) !important; color: white !important; }
+    /* HERO */
+    .hero { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 50%, var(--navy-light) 100%); min-height: calc(100vh - 70px); display: flex; align-items: center; padding: 80px 60px; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: -100px; right: -100px; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(249,115,22,0.15) 0%, transparent 70%); }
+    .hero-content { max-width: 600px; z-index: 1; }
+    .hero-tag { display: inline-block; background: rgba(249,115,22,0.15); color: var(--orange); font-size: 13px; font-weight: 600; padding: 6px 16px; border-radius: 4px; margin-bottom: 24px; border: 1px solid rgba(249,115,22,0.3); }
+    .hero h1 { font-size: clamp(32px,5vw,56px); font-weight: 800; line-height: 1.15; color: var(--white); letter-spacing: -1px; margin-bottom: 20px; }
+    .hero h1 span { color: var(--orange); }
+    .hero p { color: rgba(255,255,255,0.72); font-size: 17px; max-width: 520px; margin-bottom: 36px; line-height: 1.7; }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-orange { background: var(--orange); color: white; padding: 13px 28px; border-radius: 6px; font-size: 15px; font-weight: 600; border: none; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: background 0.2s, transform 0.2s; }
+    .btn-orange:hover { background: var(--orange-dark); transform: translateY(-1px); }
+    .btn-outline-white { background: transparent; color: white; padding: 13px 28px; border-radius: 6px; font-size: 15px; font-weight: 600; border: 1.5px solid rgba(255,255,255,0.4); cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: border-color 0.2s, background 0.2s; }
+    .btn-outline-white:hover { border-color: white; background: rgba(255,255,255,0.08); }
+    /* ABOUT */
+    .about-strip { background: white; padding: 60px; border-bottom: 1px solid var(--border-light); }
+    .about-strip-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .about-strip h2 { font-size: clamp(22px,3vw,32px); font-weight: 800; color: var(--navy); margin-bottom: 16px; line-height: 1.3; }
+    .about-strip p { color: #475569; font-size: 16px; line-height: 1.75; }
+    .about-strip-right { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .about-stat { text-align: center; padding: 24px; background: var(--bg-section); border-radius: 10px; }
+    .about-stat .num { font-size: 30px; font-weight: 800; color: var(--navy); }
+    .about-stat .lbl { font-size: 13px; color: #64748b; margin-top: 4px; }
+    /* SECTIONS */
+    .sec-wrap { padding: 80px 60px; }
+    .sec-inner { max-width: 1200px; margin: 0 auto; }
+    .sec-bg-light { background: var(--bg-section); }
+    .sec-bg-white { background: white; }
+    .sec-header { margin-bottom: 48px; }
+    .sec-header.center { text-align: center; }
+    .sec-eyebrow { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--orange); margin-bottom: 12px; }
+    .sec-title { font-size: clamp(26px,3.5vw,40px); font-weight: 800; color: var(--navy); letter-spacing: -0.5px; line-height: 1.25; }
+    .sec-sub { font-size: 16px; color: #475569; margin-top: 12px; max-width: 560px; line-height: 1.7; }
+    /* ADVANTAGES */
+    .adv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 28px; }
+    .adv-card { background: white; border-radius: 10px; padding: 32px 24px; text-align: center; border: 1px solid var(--border-light); transition: box-shadow 0.2s, transform 0.2s; }
+    .adv-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,0.1); }
+    .adv-icon { width: 64px; height: 64px; margin: 0 auto 20px; background: #fff7ed; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; }
+    .adv-card h4 { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+    .adv-card p { font-size: 14px; color: #64748b; line-height: 1.65; }
+    /* SERVICES */
+    .svc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px,1fr)); gap: 24px; }
+    .svc-card { background: white; border-radius: 10px; overflow: hidden; border: 1px solid var(--border-light); transition: box-shadow 0.2s, transform 0.2s; }
+    .svc-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,0.1); }
+    .svc-img { height: 200px; background: linear-gradient(135deg, var(--navy-mid), var(--navy-light)); display: flex; align-items: center; justify-content: center; font-size: 56px; }
+    .svc-body { padding: 24px; }
+    .svc-body h3 { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+    .svc-body p { font-size: 14px; color: #475569; line-height: 1.7; margin-bottom: 16px; }
+    .svc-link { font-size: 14px; font-weight: 600; color: var(--orange); text-decoration: none; }
+    .svc-link:hover { text-decoration: underline; }
+    /* INDUSTRIES */
+    .ind-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 24px; }
+    .ind-card { border-radius: 10px; overflow: hidden; border: 1px solid var(--border-light); transition: box-shadow 0.2s, transform 0.2s; }
+    .ind-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,0.12); }
+    .ind-img { height: 180px; display: flex; align-items: center; justify-content: center; font-size: 56px; }
+    .ind-img.banking  { background: linear-gradient(135deg,#0a1628,#1a3a5c); }
+    .ind-img.insurance { background: linear-gradient(135deg,#1e3a5f,#2d5a8e); }
+    .ind-img.health   { background: linear-gradient(135deg,#134e4a,#0d9488); }
+    .ind-body { padding: 24px; background: white; }
+    .ind-body h3 { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .ind-body p { font-size: 14px; color: #475569; line-height: 1.7; margin-bottom: 14px; }
+    .ind-link { font-size: 14px; font-weight: 600; color: var(--orange); text-decoration: none; }
+    .ind-link:hover { text-decoration: underline; }
+    /* GOALS */
+    .goals-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .goals-list { display: grid; gap: 20px; }
+    .goal-item { display: flex; gap: 16px; align-items: flex-start; }
+    .goal-icon { width: 44px; height: 44px; border-radius: 8px; background: rgba(249,115,22,0.15); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+    .goal-item h4 { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .goal-item p { font-size: 14px; color: #475569; line-height: 1.6; }
+    .goals-img { background: linear-gradient(135deg, var(--navy), var(--navy-light)); border-radius: 12px; height: 360px; display: flex; align-items: center; justify-content: center; font-size: 80px; }
+    /* PARTNER CTA */
+    .partner-cta { background: var(--navy); padding: 80px 60px; text-align: center; }
+    .partner-cta h2 { font-size: clamp(26px,4vw,42px); font-weight: 800; color: white; margin-bottom: 16px; }
+    .partner-cta p { color: rgba(255,255,255,0.7); font-size: 17px; max-width: 540px; margin: 0 auto 36px; }
+    /* FOOTER */
+    footer { background: #060e1d; padding: 60px; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; }
+    .footer-brand p { color: rgba(255,255,255,0.55); font-size: 14px; line-height: 1.7; margin-top: 16px; max-width: 300px; }
+    .footer-logo { font-size: 22px; font-weight: 800; color: white; }
+    .footer-logo span { color: var(--orange); }
+    .footer-col h4 { font-size: 14px; font-weight: 700; color: white; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px; }
+    .footer-col a { display: block; color: rgba(255,255,255,0.55); font-size: 14px; text-decoration: none; margin-bottom: 10px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--orange); }
+    .footer-bottom { max-width: 1200px; margin: 40px auto 0; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-bottom p { color: rgba(255,255,255,0.4); font-size: 13px; }
+    .social-links { display: flex; gap: 12px; }
+    .social-links a { width: 34px; height: 34px; border-radius: 6px; background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.6); font-size: 14px; text-decoration: none; transition: background 0.2s; }
+    .social-links a:hover { background: var(--orange); color: white; }
+    /* CHAT WIDGET */
+    #chat-toggle { position: fixed; bottom: 28px; right: 28px; width: 60px; height: 60px; border-radius: 50%; background: var(--orange); border: none; cursor: pointer; box-shadow: 0 4px 24px rgba(249,115,22,0.5); display: flex; align-items: center; justify-content: center; transition: transform 0.2s; z-index: 999; }
     #chat-toggle:hover { transform: scale(1.1); }
     #chat-toggle svg { width: 26px; height: 26px; fill: white; transition: transform 0.3s; }
     #chat-toggle.open svg { transform: rotate(90deg); }
     .chat-notif { position: absolute; top: 2px; right: 2px; width: 14px; height: 14px; background: #ef4444; border-radius: 50%; border: 2px solid white; animation: pulse 2s infinite; }
-    @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
-
-    #chat-window { position: fixed; bottom: 100px; right: 28px; width: 380px; height: 580px; background: white; border-radius: 20px; box-shadow: var(--shadow-lg); display: flex; flex-direction: column; overflow: hidden; z-index: 998; transition: opacity 0.25s, transform 0.3s; border: 1px solid var(--border); }
+    @keyframes pulse { 0%,100%{transform:scale(1)}50%{transform:scale(1.2)} }
+    #chat-window { position: fixed; bottom: 100px; right: 28px; width: 380px; height: 580px; background: white; border-radius: 20px; box-shadow: var(--shadow-lg); display: flex; flex-direction: column; overflow: hidden; z-index: 998; transition: opacity 0.25s, transform 0.3s; border: 1px solid #e2e8f0; }
     #chat-window.hidden { opacity: 0; transform: translateY(20px) scale(0.96); pointer-events: none; }
-
-    #chat-header { background: linear-gradient(135deg, var(--primary), var(--blue)); color: white; padding: 16px 18px; display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
-    #chat-header .avatar { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+    #chat-header { background: var(--navy); color: white; padding: 16px 18px; display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+    #chat-header .avatar { width: 40px; height: 40px; border-radius: 50%; background: rgba(249,115,22,0.25); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
     #chat-header .info { flex: 1; }
     #chat-header .name { font-weight: 700; font-size: 15px; }
-    #chat-header .status { font-size: 12px; opacity: 0.85; display: flex; align-items: center; gap: 5px; margin-top: 1px; }
+    #chat-header .status { font-size: 12px; opacity: 0.75; display: flex; align-items: center; gap: 5px; margin-top: 1px; }
     .status-dot { width: 7px; height: 7px; background: #4ade80; border-radius: 50%; display: inline-block; }
-    #close-chat { background: rgba(255,255,255,0.15); border: none; color: white; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; transition: background 0.2s; flex-shrink: 0; }
-    #close-chat:hover { background: rgba(255,255,255,0.3); }
-
-    #suggestions { padding: 10px 12px 0; display: flex; gap: 6px; flex-wrap: wrap; flex-shrink: 0; background: #f8fafc; border-bottom: 1px solid var(--border); }
-    .chip { font-size: 12px; font-weight: 500; padding: 5px 12px; border-radius: 100px; background: white; border: 1px solid var(--border); cursor: pointer; color: var(--text-muted); transition: all 0.15s; white-space: nowrap; margin-bottom: 8px; }
-    .chip:hover { border-color: var(--primary); color: var(--primary); background: var(--primary-light); }
-
+    #close-chat { background: rgba(255,255,255,0.12); border: none; color: white; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; transition: background 0.2s; flex-shrink: 0; }
+    #close-chat:hover { background: rgba(255,255,255,0.25); }
+    #suggestions { padding: 10px 12px 0; display: flex; gap: 6px; flex-wrap: wrap; flex-shrink: 0; background: #f8fafc; border-bottom: 1px solid #e2e8f0; }
+    .chip { font-size: 12px; font-weight: 500; padding: 5px 12px; border-radius: 100px; background: white; border: 1px solid #e2e8f0; cursor: pointer; color: #64748b; transition: all 0.15s; white-space: nowrap; margin-bottom: 8px; }
+    .chip:hover { border-color: var(--orange); color: var(--orange); background: var(--orange-light); }
     #chat-messages { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px; background: #f8fafc; scroll-behavior: smooth; }
     #chat-messages::-webkit-scrollbar { width: 4px; }
     #chat-messages::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-
     .msg-row { display: flex; gap: 8px; align-items: flex-end; }
     .msg-row.user { flex-direction: row-reverse; }
-    .msg-avatar { width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--blue)); display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; }
+    .msg-avatar { width: 28px; height: 28px; border-radius: 50%; background: var(--navy); display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; }
     .msg { max-width: 76%; padding: 10px 14px; border-radius: 16px; font-size: 14px; line-height: 1.55; word-break: break-word; }
-    .msg.bot { background: white; color: var(--text); border-bottom-left-radius: 4px; box-shadow: var(--shadow-sm); }
-    .msg.user { background: linear-gradient(135deg, var(--primary), var(--blue)); color: white; border-bottom-right-radius: 4px; }
+    .msg.bot { background: white; color: #1e293b; border-bottom-left-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+    .msg.user { background: var(--navy); color: white; border-bottom-right-radius: 4px; }
     .msg strong { font-weight: 600; }
     .msg-time { font-size: 11px; color: #94a3b8; padding: 0 4px; flex-shrink: 0; align-self: flex-end; margin-bottom: 2px; }
-
     .typing-row { display: flex; gap: 8px; align-items: flex-end; }
-    .typing-dots { padding: 12px 16px; background: white; border-radius: 16px; border-bottom-left-radius: 4px; box-shadow: var(--shadow-sm); display: flex; gap: 4px; align-items: center; }
+    .typing-dots { padding: 12px 16px; background: white; border-radius: 16px; border-bottom-left-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); display: flex; gap: 4px; align-items: center; }
     .typing-dots span { width: 7px; height: 7px; background: #94a3b8; border-radius: 50%; animation: bounce 1.2s infinite; }
     .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
     .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
-    @keyframes bounce { 0%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-6px); } }
-
-    #chat-input-area { display: flex; padding: 12px; border-top: 1px solid var(--border); gap: 8px; background: white; align-items: center; flex-shrink: 0; }
-    #chat-input { flex: 1; border: 1.5px solid var(--border); border-radius: 24px; padding: 10px 16px; font-size: 14px; outline: none; transition: border-color 0.2s, box-shadow 0.2s; font-family: inherit; }
-    #chat-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(108,99,255,0.1); }
-    #send-btn { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--blue)); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: transform 0.2s, opacity 0.2s; flex-shrink: 0; box-shadow: 0 2px 8px rgba(108,99,255,0.35); }
+    @keyframes bounce { 0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-6px)} }
+    #chat-input-area { display: flex; padding: 12px; border-top: 1px solid #e2e8f0; gap: 8px; background: white; align-items: center; flex-shrink: 0; }
+    #chat-input { flex: 1; border: 1.5px solid #e2e8f0; border-radius: 24px; padding: 10px 16px; font-size: 14px; outline: none; transition: border-color 0.2s; font-family: inherit; color: #1e293b; }
+    #chat-input:focus { border-color: var(--orange); }
+    #send-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--orange); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: transform 0.2s, opacity 0.2s; flex-shrink: 0; box-shadow: 0 2px 8px rgba(249,115,22,0.4); }
     #send-btn:hover { transform: scale(1.08); }
     #send-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
     #send-btn svg { width: 18px; height: 18px; fill: white; }
-    .chat-footer { text-align: center; padding: 6px; font-size: 11px; color: #94a3b8; background: white; border-top: 1px solid #f1f5f9; flex-shrink: 0; }
-    .chat-footer span { color: var(--primary); font-weight: 600; }
-
+    .chat-footer-bar { text-align: center; padding: 6px; font-size: 11px; color: #94a3b8; background: white; border-top: 1px solid #f1f5f9; flex-shrink: 0; }
+    .chat-footer-bar span { color: var(--orange); font-weight: 600; }
+    @media (max-width: 900px) {
+      .about-strip-inner,.goals-inner { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .hero,.sec-wrap,.partner-cta,.about-strip { padding-left: 32px; padding-right: 32px; }
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      footer { padding: 48px 32px; }
+    }
     @media (max-width: 480px) {
       #chat-window { width: calc(100vw - 24px); right: 12px; }
-      nav { padding: 0 20px; }
-      .nav-links { display: none; }
-      section { padding: 60px 20px; }
-      .cta-section { margin: 0 20px 60px; padding: 48px 24px; }
-      footer { padding: 24px 20px; }
+      .footer-inner { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
   <nav>
-    <div class="nav-logo">Synergech</div>
+    <a href="#" class="nav-logo"><div class="nav-logo-text">Synerge<span>ch</span></div></a>
     <div class="nav-links">
       <a href="#services">Services</a>
-      <a href="#how-it-works">How It Works</a>
+      <a href="#industries">Industries</a>
+      <a href="#about">About Us</a>
       <a href="#contact">Contact</a>
-      <a href="#" class="nav-cta" onclick="openChat(); return false;">Book a Consultation</a>
+      <a href="#contact" class="nav-cta" onclick="openChat();return false;">Schedule a Free Consultation</a>
     </div>
   </nav>
 
   <div class="hero">
-    <div>
-      <div class="hero-badge">✦ AI-Powered Technology Solutions</div>
-      <h1>Technology that helps<br>your business <span>grow faster</span></h1>
-      <p>From cloud infrastructure to AI automation — Synergech delivers solutions that reduce friction, cut costs, and scale with you.</p>
+    <div class="hero-content">
+      <div class="hero-tag">Leading Technology Solutions Partner</div>
+      <h1>Transforming Businesses through <span>Technology Solutions</span></h1>
+      <p>Strategic adoption and integration of innovative digital solutions to revolutionize the way a company operates and delivers value to customers.</p>
       <div class="hero-btns">
-        <button class="btn-primary" onclick="openChat()">💬 Chat with Our AI</button>
-        <a href="#services" class="btn-secondary">Explore Services →</a>
-      </div>
-      <div class="hero-stats">
-        <div class="stat"><div class="number">5+</div><div class="label">Core Services</div></div>
-        <div class="stat"><div class="number">24h</div><div class="label">Response Time</div></div>
-        <div class="stat"><div class="number">100%</div><div class="label">Custom Solutions</div></div>
+        <a href="#services" class="btn-orange">Our Services</a>
+        <a href="#about" class="btn-outline-white">About Us</a>
       </div>
     </div>
   </div>
 
-  <section id="services">
-    <div class="section-label">What We Offer</div>
-    <h2 class="section-title">Solutions for every business challenge</h2>
-    <p class="section-sub">Choose the service that matches your goals, or let our AI recommend the best fit.</p>
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="service-icon" style="background:#ede9fe;">☁️</div>
-        <h3>Cloud Solutions</h3>
-        <p>Migrate, scale, and manage infrastructure in the cloud — reducing costs and enabling seamless remote work.</p>
-        <div class="service-tags"><span class="tag">Migration</span><span class="tag">Scalability</span><span class="tag">Remote Teams</span></div>
+  <div class="about-strip" id="about">
+    <div class="about-strip-inner">
+      <div>
+        <h2>A Leading Technology Solutions Partner Beyond Borders</h2>
+        <p>Synergech is a leading technology solutions provider specializing in digital and business process solutions. Our comprehensive services are designed to automate and streamline processes, resulting in improved efficiency, compliance, and cost savings for our clients. With our best-in-class digital services, we empower businesses to undergo a transformative journey, enhancing customer engagement through mobile enablement and delivering seamless omnichannel experiences.</p>
       </div>
-      <div class="service-card">
-        <div class="service-icon" style="background:#fef3c7;">🤖</div>
-        <h3>AI Solutions</h3>
-        <p>Automate repetitive tasks, surface insights from data, and free your team to focus on high-value work.</p>
-        <div class="service-tags"><span class="tag">Automation</span><span class="tag">Productivity</span><span class="tag">Insights</span></div>
-      </div>
-      <div class="service-card">
-        <div class="service-icon" style="background:#dcfce7;">⚙️</div>
-        <h3>Business Process Optimization</h3>
-        <p>Identify bottlenecks, eliminate inefficiencies, and redesign workflows for faster, more reliable operations.</p>
-        <div class="service-tags"><span class="tag">Workflows</span><span class="tag">Efficiency</span><span class="tag">Operations</span></div>
-      </div>
-      <div class="service-card">
-        <div class="service-icon" style="background:#fee2e2;">🔍</div>
-        <h3>Quality Assurance</h3>
-        <p>Embed structured testing throughout your pipeline — catch bugs early and ship with confidence.</p>
-        <div class="service-tags"><span class="tag">Testing</span><span class="tag">QA</span><span class="tag">Reliability</span></div>
-      </div>
-      <div class="service-card">
-        <div class="service-icon" style="background:#e0f2fe;">🚀</div>
-        <h3>Digital Transformation</h3>
-        <p>Move off legacy systems, modernize your tech stack, and build a scalable foundation for growth.</p>
-        <div class="service-tags"><span class="tag">Modernization</span><span class="tag">Legacy Systems</span><span class="tag">Scaling</span></div>
-      </div>
-      <div class="service-card" style="background:linear-gradient(135deg,#ede9fe,#e0f2fe);border:none;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:12px;">
-        <div style="font-size:32px;">💬</div>
-        <h3>Not sure which fits you?</h3>
-        <p>Our AI will recommend the right service based on your specific challenges.</p>
-        <button class="btn-primary" style="margin-top:4px;" onclick="openChat()">Ask the AI</button>
+      <div class="about-strip-right">
+        <div class="about-stat"><div class="num">6+</div><div class="lbl">Core Services</div></div>
+        <div class="about-stat"><div class="num">3</div><div class="lbl">Industries Served</div></div>
+        <div class="about-stat"><div class="num">24h</div><div class="lbl">Consultation Response</div></div>
+        <div class="about-stat"><div class="num">100%</div><div class="lbl">Custom Solutions</div></div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <section id="how-it-works" style="background:white;max-width:100%;padding:80px 40px;">
-    <div style="max-width:1200px;margin:0 auto;text-align:center;">
-      <div class="section-label">Simple Process</div>
-      <h2 class="section-title">How It Works</h2>
-      <p class="section-sub" style="margin:0 auto 48px;">From first message to consultation in minutes.</p>
-      <div class="steps-grid">
-        <div class="step"><div class="step-num">1</div><h4>Describe Your Challenge</h4><p>Tell our AI what problem you're facing. No forms, no jargon — just a conversation.</p></div>
-        <div class="step"><div class="step-num">2</div><h4>Get a Recommendation</h4><p>The AI matches your challenge to the best Synergech service and explains why.</p></div>
-        <div class="step"><div class="step-num">3</div><h4>Book a Consultation</h4><p>Share your contact details in the chat and a specialist will reach out within 24 hours.</p></div>
-        <div class="step"><div class="step-num">4</div><h4>We Deliver</h4><p>Receive a tailored proposal and kick off your project with a dedicated Synergech team.</p></div>
+  <div class="sec-wrap sec-bg-light">
+    <div class="sec-inner">
+      <div class="sec-header center">
+        <div class="sec-eyebrow">Why Synergech</div>
+        <div class="sec-title">Advantages</div>
+      </div>
+      <div class="adv-grid">
+        <div class="adv-card"><div class="adv-icon">&#128161;</div><h4>Transformational Smart Solutions</h4><p>Synergech provides transformational smart solutions that drive measurable business outcomes for customers.</p></div>
+        <div class="adv-card"><div class="adv-icon">&#127760;</div><h4>Global Best Practices</h4><p>Our experience delivering solutions in multiple countries helps us leverage globally accepted best practices.</p></div>
+        <div class="adv-card"><div class="adv-icon">&#128640;</div><h4>Next-Generation Technologies</h4><p>Our experts have extensive experience in design and implementation using world-class technologies.</p></div>
+        <div class="adv-card"><div class="adv-icon">&#128279;</div><h4>Holistic End-to-End Solutions</h4><p>We deliver end-to-end integrated solutions — software, hardware, applications and infrastructure.</p></div>
+        <div class="adv-card"><div class="adv-icon">&#128176;</div><h4>Reduced Lifecycle Costs</h4><p>Our frameworks-enabled solutions help achieve rapid implementation timelines and reduced lifecycle costs.</p></div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <div id="contact">
-    <div class="cta-section">
-      <h2>Ready to transform your business?</h2>
-      <p>Chat with our AI now — get a service recommendation and book a free consultation in minutes.</p>
-      <button class="btn-white" onclick="openChat()">💬 Start a Conversation</button>
+  <div class="sec-wrap sec-bg-white" id="services">
+    <div class="sec-inner">
+      <div class="sec-header">
+        <div class="sec-eyebrow">What We Offer</div>
+        <div class="sec-title">Services</div>
+        <div class="sec-sub">Comprehensive technology services designed to automate and streamline your business processes.</div>
+      </div>
+      <div class="svc-grid">
+        <div class="svc-card"><div class="svc-img">&#9729;&#65039;</div><div class="svc-body"><h3>Cloud Transformation</h3><p>Full-scale cloud transformation services, encompassing infrastructure and application modernization to enhance business agility, scalability, and cost-effectiveness.</p><a href="#" class="svc-link" onclick="openChat();return false;">Learn more &rarr;</a></div></div>
+        <div class="svc-card"><div class="svc-img">&#128260;</div><div class="svc-body"><h3>Digital Transformation</h3><p>We modernize infrastructure by migrating businesses to the cloud, optimizing performance and minimizing downtime with expertise in AWS, Azure, and Google Cloud.</p><a href="#" class="svc-link" onclick="openChat();return false;">Learn more &rarr;</a></div></div>
+        <div class="svc-card"><div class="svc-img">&#9881;&#65039;</div><div class="svc-body"><h3>Business Process Optimization</h3><p>Top-notch business process optimization services, streamlining operations and boosting efficiency through industry best practices and advanced technologies.</p><a href="#" class="svc-link" onclick="openChat();return false;">Learn more &rarr;</a></div></div>
+        <div class="svc-card"><div class="svc-img">&#128202;</div><div class="svc-body"><h3>Business Consulting</h3><p>Synergech excels in business consulting, leveraging industry expertise and cutting-edge technology to drive success in payment solutions and retail banking.</p><a href="#" class="svc-link" onclick="openChat();return false;">Learn more &rarr;</a></div></div>
+        <div class="svc-card"><div class="svc-img">&#129302;</div><div class="svc-body"><h3>Artificial Intelligence</h3><p>Harnessing the true potential of Artificial Intelligence to revolutionize industries and elevate businesses to new heights through intelligent automation.</p><a href="#" class="svc-link" onclick="openChat();return false;">Learn more &rarr;</a></div></div>
+        <div class="svc-card"><div class="svc-img">&#9989;</div><div class="svc-body"><h3>Quality Assurance Services</h3><p>A complete range of quality assurance services, including consulting, functional testing, automation testing, performance testing, and specialized testing.</p><a href="#" class="svc-link" onclick="openChat();return false;">Learn more &rarr;</a></div></div>
+      </div>
     </div>
+  </div>
+
+  <div class="sec-wrap sec-bg-light" id="industries">
+    <div class="sec-inner">
+      <div class="sec-header">
+        <div class="sec-eyebrow">Sectors We Serve</div>
+        <div class="sec-title">Industries</div>
+        <div class="sec-sub">Deep domain expertise across key industries, enabling targeted and effective solutions.</div>
+      </div>
+      <div class="ind-grid">
+        <div class="ind-card"><div class="ind-img banking">&#127974;</div><div class="ind-body"><h3>Banking &amp; Financial Services</h3><p>Cutting-edge solutions for banking and financial institutions, enabling seamless customer interactions, enhanced security, and operational efficiency.</p><a href="#" class="ind-link" onclick="openChat();return false;">Learn more &rarr;</a></div></div>
+        <div class="ind-card"><div class="ind-img insurance">&#128737;&#65039;</div><div class="ind-body"><h3>Insurance</h3><p>Insurance solutions that address industry challenges, streamline processes, automate claims management, and optimize policy administration.</p><a href="#" class="ind-link" onclick="openChat();return false;">Learn more &rarr;</a></div></div>
+        <div class="ind-card"><div class="ind-img health">&#127973;</div><div class="ind-body"><h3>Health Care</h3><p>Empowering healthcare providers with cutting-edge digital solutions, enhancing patient care, optimizing workflows, and ensuring data security.</p><a href="#" class="ind-link" onclick="openChat();return false;">Learn more &rarr;</a></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-wrap sec-bg-white">
+    <div class="sec-inner">
+      <div class="sec-header"><div class="sec-eyebrow">Our Mission</div><div class="sec-title">Goals</div></div>
+      <div class="goals-inner">
+        <div class="goals-list">
+          <div class="goal-item"><div class="goal-icon">&#127942;</div><div><h4>Client Success</h4><p>We measure our success by the success of our clients — every engagement is focused on delivering real, measurable outcomes.</p></div></div>
+          <div class="goal-item"><div class="goal-icon">&#128161;</div><div><h4>Innovation</h4><p>We continuously invest in next-generation technologies to ensure our clients have access to the best solutions available.</p></div></div>
+          <div class="goal-item"><div class="goal-icon">&#128260;</div><div><h4>Adaptability</h4><p>Business needs evolve — we design flexible solutions that grow and adapt alongside your organization.</p></div></div>
+          <div class="goal-item"><div class="goal-icon">&#129309;</div><div><h4>Long-term Partnership</h4><p>We build lasting relationships with our clients, providing ongoing support and strategic guidance beyond project delivery.</p></div></div>
+        </div>
+        <div class="goals-img">&#127919;</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="partner-cta" id="contact">
+    <h2>Partner with Us for Comprehensive IT</h2>
+    <p>We are happy to answer any questions and help you determine which of our services best fit your needs. Email us at <strong style="color:var(--orange)">info@synergech.com</strong></p>
+    <button class="btn-orange" onclick="openChat()">Schedule a Free Consultation</button>
   </div>
 
   <footer>
-    <div class="logo">Synergech</div>
-    <p>© 2026 Synergech. Technology solutions that help businesses grow.</p>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">Synerge<span>ch</span></div>
+        <p>A Leading Technology Solutions Partner Beyond Borders! Specialists in digital and business process solutions delivering improved efficiency, compliance, and cost savings.</p>
+        <div class="social-links" style="margin-top:20px;">
+          <a href="https://www.facebook.com/SynergechTechnology" target="_blank" rel="noopener">f</a>
+          <a href="https://twitter.com/synergech" target="_blank" rel="noopener">X</a>
+          <a href="https://www.linkedin.com/company/synergech/" target="_blank" rel="noopener">in</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="#" onclick="openChat();return false;">Artificial Intelligence</a>
+        <a href="#" onclick="openChat();return false;">Business Consulting</a>
+        <a href="#" onclick="openChat();return false;">Cloud Transformation</a>
+        <a href="#" onclick="openChat();return false;">Digital Transformation</a>
+        <a href="#" onclick="openChat();return false;">Business Process Optimization</a>
+        <a href="#" onclick="openChat();return false;">Quality Assurance</a>
+        <a href="https://www.synergech.com/privacypolicy" target="_blank" rel="noopener">Privacy Policy</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <a href="mailto:info@synergech.com">info@synergech.com</a>
+        <a href="#">Synergech Technology Solution, Inc<br>3480 Preston Ridge Road, #500<br>Alpharetta, GA 30005</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Synergech. All Rights Reserved.</p>
+      <p style="color:rgba(255,255,255,0.3)">Technology solutions that help businesses grow, automate, and scale.</p>
+    </div>
   </footer>
 
   <button id="chat-toggle" title="Chat with us">
@@ -248,12 +323,12 @@
 
   <div id="chat-window" class="hidden">
     <div id="chat-header">
-      <div class="avatar">🤖</div>
+      <div class="avatar">&#129302;</div>
       <div class="info">
         <div class="name">Synergech Assistant</div>
-        <div class="status"><span class="status-dot"></span> Online — replies instantly</div>
+        <div class="status"><span class="status-dot"></span> Online &mdash; replies instantly</div>
       </div>
-      <button id="close-chat">✕</button>
+      <button id="close-chat">&times;</button>
     </div>
     <div id="suggestions">
       <div class="chip" onclick="sendSuggestion('What services do you offer?')">Our services</div>
@@ -268,7 +343,7 @@
         <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
       </button>
     </div>
-    <div class="chat-footer">Powered by <span>Synergech AI</span></div>
+    <div class="chat-footer-bar">Powered by <span>Synergech AI</span></div>
   </div>
 
   <script>
@@ -290,7 +365,10 @@
       if (!chatStarted) { chatStarted = true; sendToServer("hello"); }
       setTimeout(() => input.focus(), 300);
     }
-    toggle.addEventListener("click", () => { if (isOpen) { isOpen = false; chatWin.classList.add("hidden"); toggle.classList.remove("open"); } else { openChat(); } });
+    toggle.addEventListener("click", () => {
+      if (isOpen) { isOpen = false; chatWin.classList.add("hidden"); toggle.classList.remove("open"); }
+      else { openChat(); }
+    });
     closeBtn.addEventListener("click", () => { isOpen = false; chatWin.classList.add("hidden"); toggle.classList.remove("open"); });
     input.addEventListener("keydown", e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); sendMessage(); } });
     sendBtn.addEventListener("click", sendMessage);
@@ -303,7 +381,7 @@
       row.className = "msg-row " + sender;
       if (sender === "bot") {
         const av = document.createElement("div");
-        av.className = "msg-avatar"; av.textContent = "🤖"; row.appendChild(av);
+        av.className = "msg-avatar"; av.textContent = "\u{1F916}"; row.appendChild(av);
       }
       const bubble = document.createElement("div");
       bubble.className = "msg " + sender;
@@ -317,7 +395,7 @@
 
     function showTyping() {
       const row = document.createElement("div"); row.className = "typing-row"; row.id = "typing";
-      const av = document.createElement("div"); av.className = "msg-avatar"; av.textContent = "🤖"; row.appendChild(av);
+      const av = document.createElement("div"); av.className = "msg-avatar"; av.textContent = "\u{1F916}"; row.appendChild(av);
       const dots = document.createElement("div"); dots.className = "typing-dots";
       dots.innerHTML = "<span></span><span></span><span></span>"; row.appendChild(dots);
       messages.appendChild(row); messages.scrollTop = messages.scrollHeight;
