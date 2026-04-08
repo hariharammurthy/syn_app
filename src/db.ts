@@ -1,11 +1,8 @@
 import { Pool } from "pg";
+import "dotenv/config";
 
 export const pool = new Pool({
-  host: "localhost",
-  port: 5432,
-  user: "postgres",
-  password: "Fluffy4Me!",
-  database: "leads",
+  connectionString: process.env.DATABASE_URL,
 });
 
 pool.on("error", (err) => {
